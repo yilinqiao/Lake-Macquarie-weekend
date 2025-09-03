@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lake Macquarie weekend trip </title>
+<title>Lake Macquarie 周末行程</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -21,22 +21,14 @@
   .dot{width:12px;height:12px;border-radius:50%}
   .badge{display:inline-flex;align-items:center;gap:6px;background:#0f172a;border:1px solid #233046;border-radius:999px;padding:6px 10px;margin-right:8px}
   #map{height:560px;border-radius:16px;overflow:hidden;margin-top:12px}
-  .num{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-weight:800;border:2px solid rgba(255,255,255,.9);text-shadow:0 1px 1px rgba(0,0,0,.6)}
+  .num{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-weight:800;border:2px solid rgba(255,255,255,.9);text-shadow:0 1px 1px rgba(0,0,0,.6);opacity:0.8}
   .num.red{background:#ef4444}
   .num.blue{background:#3b82f6}
-  .lang-toggle{margin-bottom:16px}
-  .lang-toggle button{margin-right:8px;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-weight:600;background:#1f2937;color:#e5e7eb}
-  .lang-toggle button.active{background:#2563eb;color:white}
   @media (max-width: 950px){.grid{grid-template-columns:1fr}#map{height:440px}.slot{grid-template-columns:84px 1fr}.slot .note{grid-column:1/-1}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="lang-toggle">
-    <button id="btn-zh" class="active">中文版</button>
-    <button id="btn-en">English Version</button>
-  </div>
-
   <h1 id="title">Lake Macquarie 周末行程</h1>
   <div id="subtitle" class="subtitle">出发：悉尼｜住宿：Little National Hotel Newcastle｜两天一晚 · 自驾</div>
 
@@ -58,7 +50,7 @@
 </div>
 
 <script>
-// —— 中英文行程内容 ——
+// —— 中文行程内容 ——
 const data={
   zh:{
     title:"Lake Macquarie 周末行程",
@@ -69,102 +61,62 @@ const data={
       <section class="card">
         <h2>周六 · 9:00 出发（南到北，不走回头路）</h2>
         <div class="slot"><div class="time">09:00</div><div class="place">悉尼出发（M1）</div><div class="note">走 M1 太平洋高速，全程约 1.5–2 小时到 Lake Macquarie 区域</div></div>
-        <div class="slot"><div class="time">10:45</div><div class="place">Caves Beach</div><div class="note">低潮 7:20am，已回涨但可尝试入洞（注意浪高、防滑）；退潮时洞内拍照最佳</div></div>
-        <div class="slot"><div class="time">11:45</div><div class="place">Catherine Hill Bay</div><div class="note">19 世纪采煤小镇遗址，木栈桥与海滩很好出片</div></div>
-        <div class="slot"><div class="time">12:30</div><div class="place">Belmont 湖景午餐</div><div class="note">推荐 Pippi’s at the Point 或 Crusoe’s on the Lake</div></div>
-        <div class="slot"><div class="time">13:45</div><div class="place">Warners Bay 湖畔步道 & 咖啡</div><div class="note">The Yoga Place Café / Table 1 Espresso，湖边漫步拍照</div></div>
-        <div class="slot"><div class="time">15:00</div><div class="place">Redhead Beach / Bluff Lookout</div><div class="note">线性海岸风景，轻松散步</div></div>
-        <div class="slot"><div class="time">16:00</div><div class="place">入住 Little National Hotel Newcastle</div><div class="note">停车方便，公共空间舒适</div></div>
+        <div class="slot"><div class="time">10:45</div><div class="place">Catherine Hill Bay</div><div class="note">19 世纪采煤小镇遗址，<a href="https://maps.google.com/?q=Catherine+Hill+Bay+Jetty" target="_blank" rel="noopener">导航到 Jetty</a> 拍照更好</div></div>
+        <div class="slot"><div class="time">11:30</div><div class="place">Caves Beach</div><div class="note">注意查好低潮时间，前后 1–2 小时仍可入洞 但注意浪高、防滑；<a href="https://maps.google.com/?q=Caves+Beach+Lookout" target="_blank" rel="noopener">直达 Caves Beach Lookout 车位</a></div></div>
+        <div class="slot"><div class="time">12:30</div><div class="place">Swansea RSL 午餐</div><div class="note">湖景+大份量，价格合理；<a href="https://maps.google.com/?q=Swansea+RSL" target="_blank" rel="noopener">导航点</a>，建议停留 1.5 小时</div></div>
+        <div class="slot"><div class="time">14:00</div><div class="place">Swansea Channel</div><div class="note"><a href="https://maps.google.com/?q=Swansea+Channel" target="_blank" rel="noopener">湖道边观景休息</a>，午餐后散步消食</div></div>
+        <div class="slot"><div class="time">15:00</div><div class="place">Belmont 湖景甜品</div><div class="note">推荐 <a href="https://maps.google.com/?q=Lake+Macquarie+Yacht+Club" target="_blank" rel="noopener">Lake Macquarie Yacht Club</a> 吃甜品，看湖景</div></div>
+        <div class="slot"><div class="time">16:00</div><div class="place">Redhead Lookout</div><div class="note"><a href="https://maps.google.com/?q=Redhead+Lookout" target="_blank" rel="noopener">Google Maps · Redhead Lookout</a>（16:00–16:30 停留）</div></div>
+        <div class="slot"><div class="time">17:00</div><div class="place">入住 Little National Hotel Newcastle</div><div class="note">旁边有个<a href="https://maps.app.goo.gl/LDPoEfWixUdUL93y5" target="_blank" rel="noopener"> public carpark停车场</a> 公共空间舒适，酒店gym不错</div></div>
         <div class="slot"><div class="time">18:30</div><div class="place">Newcastle 晚餐</div><div class="note">Humbug（手工意面）/ Rustica（地中海风味海鲜）</div></div>
         <div class="slot"><div class="time">20:00</div><div class="place">Honeysuckle 海滨夜景散步</div><div class="note">酒店旁就是海滨，夜景很美</div></div>
       </section>
 
       <section class="card">
         <h2>周日 · 11:00 出发（丰富返程线路）</h2>
-        <div class="slot"><div class="time">09:00</div><div class="place">Newcastle 早餐 & 自由活动</div><div class="note">Bathers Way 海滨步道；或 Darby Street 早餐（Equium Social / One Penny Black）</div></div>
+        <div class="slot"><div class="time">09:00</div><div class="place">Newcastle 早餐 & 自由活动</div><div class="note">Bathers Way 海滨步道；或 Darby Street 早餐</div></div>
         <div class="slot"><div class="time">11:00</div><div class="place">退房出发</div><div class="note">沿湖西岸南下</div></div>
-        <div class="slot"><div class="time">11:30</div><div class="place">Wangi Wangi Point</div><div class="note">湖畔步道、观鸟、林间平台</div></div>
+        <div class="slot"><div class="time">11:30</div><div class="place">Warners Bay</div><div class="note">湖畔步道 & 咖啡</div></div>
         <div class="slot"><div class="time">12:15</div><div class="place">Toronto 小镇</div><div class="note">码头散步 / 湖景咖啡</div></div>
-        <div class="slot"><div class="time">13:00</div><div class="place">Swansea RSL 午餐</div><div class="note">湖景+大份量，价格合理</div></div>
-        <div class="slot"><div class="time">14:00</div><div class="place">返程悉尼</div><div class="note">预计 16:00 抵达；不赶时间可在中央海岸停个咖啡</div></div>
+        <div class="slot"><div class="time">13:00</div><div class="place">Wangi Wangi Point</div><div class="note">湖畔步道、观鸟、林间平台</div></div>
+        <div class="slot"><div class="time">14:00</div><div class="place">返程悉尼</div><div class="note">预计 16:30 抵达</div></div>
       </section>
     </div>`,
     tipsTitle:"潮汐与安全提示",
     tips:[
-      "<b>周六 8/16 低潮：</b>07:20am（最佳探洞时段为前后 1–2 小时）",
+      "最佳探洞时段为前后 1–2 小时",
       "即使接近低潮，也要看浪高和回水情况；安全第一。",
       "穿防滑鞋，避免浪大时进入洞口。"
-    ]
-  },
-  en:{
-    title:"Lake Macquarie Weekend Trip",
-    subtitle:"Departure: Sydney | Stay: Little National Hotel Newcastle | 2 Days · Self-drive",
-    mapTitle:"Interactive Map · Numbered Stops",
-    itinerary:`
-    <div class="grid">
-      <section class="card">
-        <h2>Saturday · Depart 9:00 (South → North, no backtracking)</h2>
-        <div class="slot"><div class="time">09:00</div><div class="place">Depart Sydney (M1)</div><div class="note">Via M1 Pacific Motorway, ~1.5–2 hrs to Lake Macquarie</div></div>
-        <div class="slot"><div class="time">10:45</div><div class="place">Caves Beach</div><div class="note">Low tide ~7:20am; tide rising by late morning—enter caves only if conditions are safe; best photos at low tide</div></div>
-        <div class="slot"><div class="time">11:45</div><div class="place">Catherine Hill Bay</div><div class="note">19th‑century mining village feel; photogenic jetty & beach</div></div>
-        <div class="slot"><div class="time">12:30</div><div class="place">Belmont · Lakeside Lunch</div><div class="note">Pippi’s at the Point / Crusoe’s on the Lake</div></div>
-        <div class="slot"><div class="time">13:45</div><div class="place">Warners Bay · Foreshore Walk & Coffee</div><div class="note">The Yoga Place Café / Table 1 Espresso</div></div>
-        <div class="slot"><div class="time">15:00</div><div class="place">Redhead Beach / Bluff Lookout</div><div class="note">Scenic coastal walk</div></div>
-        <div class="slot"><div class="time">16:00</div><div class="place">Check‑in · Little National Hotel Newcastle</div><div class="note">Easy parking, comfy public spaces</div></div>
-        <div class="slot"><div class="time">18:30</div><div class="place">Dinner in Newcastle</div><div class="note">Humbug (fresh pasta) / Rustica (Mediterranean seafood)</div></div>
-        <div class="slot"><div class="time">20:00</div><div class="place">Honeysuckle Waterfront Stroll</div><div class="note">Night views right by the hotel</div></div>
-      </section>
-
-      <section class="card">
-        <h2>Sunday · Depart 11:00 (Richer southbound route)</h2>
-        <div class="slot"><div class="time">09:00</div><div class="place">Breakfast & Free Time in Newcastle</div><div class="note">Bathers Way coastal walk; or Darby St cafés (Equium Social / One Penny Black)</div></div>
-        <div class="slot"><div class="time">11:00</div><div class="place">Check out & head south</div><div class="note">Follow the west shore of the lake</div></div>
-        <div class="slot"><div class="time">11:30</div><div class="place">Wangi Wangi Point</div><div class="note">Lakeside trail, birdwatching</div></div>
-        <div class="slot"><div class="time">12:15</div><div class="place">Toronto Township</div><div class="note">Jetty stroll / lakeside coffee</div></div>
-        <div class="slot"><div class="time">13:00</div><div class="place">Lunch · Swansea RSL</div><div class="note">Lakeside, generous portions</div></div>
-        <div class="slot"><div class="time">14:00</div><div class="place">Drive back to Sydney</div><div class="note">ETA ~16:00; optional coffee stop on the Central Coast</div></div>
-      </section>
-    </div>`,
-    tipsTitle:"Tide & Safety Notes",
-    tips:[
-      "<b>Sat 8/16 Low tide:</b> 07:20am (best cave access is within 1–2 hours around low tide)",
-      "Even near low tide, check wave height and backwash; safety first.",
-      "Wear non‑slip shoes; avoid entering if waves are high."
     ]
   }
 };
 
-function setLang(lang){
-  document.getElementById('btn-zh').classList.toggle('active',lang==='zh');
-  document.getElementById('btn-en').classList.toggle('active',lang==='en');
-  document.getElementById('title').innerHTML=data[lang].title;
-  document.getElementById('subtitle').innerHTML=data[lang].subtitle;
-  document.getElementById('itinerary').innerHTML=data[lang].itinerary;
-  document.getElementById('map-title').innerHTML=data[lang].mapTitle;
-  document.getElementById('tips-title').innerHTML=data[lang].tipsTitle;
-  document.getElementById('tips-list').innerHTML=data[lang].tips.map(t=>`<li>${t}</li>`).join('');
-}
+// —— 页面初始化 ——
+const lang='zh';
+document.getElementById('title').innerHTML=data[lang].title;
+document.getElementById('subtitle').innerHTML=data[lang].subtitle;
+document.getElementById('itinerary').innerHTML=data[lang].itinerary;
+document.getElementById('map-title').innerHTML=data[lang].mapTitle;
+document.getElementById('tips-title').innerHTML=data[lang].tipsTitle;
+document.getElementById('tips-list').innerHTML=data[lang].tips.map(t=>`<li>${t}</li>`).join('');
 
-// 绑定切换
-document.getElementById('btn-zh').onclick=()=>setLang('zh');
-document.getElementById('btn-en').onclick=()=>setLang('en');
-setLang('zh');
-
-// —— 地图 ——
+// —— 地图（同步修改） ——
 const day1=[
   {n:1,name:"Sydney 出发 / Depart Sydney",lat:-33.8688,lon:151.2093},
-  {n:2,name:"Caves Beach",lat:-33.1092,lon:151.6483},
-  {n:3,name:"Catherine Hill Bay",lat:-33.1721,lon:151.6215},
-  {n:4,name:"Belmont",lat:-33.0296,lon:151.6575},
-  {n:5,name:"Warners Bay",lat:-32.9674,lon:151.6447},
-  {n:6,name:"Redhead Beach",lat:-33.0121,lon:151.7166},
-  {n:7,name:"Little National Hotel Newcastle",lat:-32.9267,lon:151.7736}
-];
-const day2=[
-  {n:1,name:"Newcastle Morning",lat:-32.929,lon:151.773},
-  {n:2,name:"Wangi Wangi Point",lat:-33.0661,lon:151.5918},
-  {n:3,name:"Toronto",lat:-33.0137,lon:151.5938},
+  {n:2,name:"Catherine Hill Bay",lat:-33.1721,lon:151.6215},
+  {n:3,name:"Caves Beach",lat:-33.1092,lon:151.6483},
   {n:4,name:"Swansea RSL",lat:-33.0872,lon:151.6405},
+  {n:5,name:"Swansea Channel",lat:-33.08354144682994,lon:151.6372310772366},
+  {n:6,name:"Belmont",lat:-33.0296,lon:151.6575},
+  {n:7,name:"Redhead Lookout",lat:-33.0121,lon:151.7166},
+  {n:8,name:"Little National Hotel Newcastle",lat:-32.9267,lon:151.7736}
+];
+
+const day2=[
+  {n:1,name:"Newcastle 早餐",lat:-32.929,lon:151.773},
+  {n:2,name:"Warners Bay",lat:-32.9674,lon:151.6447},
+  {n:3,name:"Toronto",lat:-33.0137,lon:151.5938},
+  {n:4,name:"Wangi Wangi Point",lat:-33.0661,lon:151.5918},
   {n:5,name:"Sydney",lat:-33.8688,lon:151.2093}
 ];
 
